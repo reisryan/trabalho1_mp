@@ -1,42 +1,46 @@
         -:    0:Source:velha.cpp
-        -:    1:/**
+        -:    1:/* Copyright [2024] <Copyright Ryan>
         -:    2: * \file  velha.cpp
         -:    3: */
-        -:    4:
-        -:    5: 
-        -:    6:#include "velha.hpp"
-        -:    7:
-        -:    8:/** 
-        -:    9: * @brief verifica situacao do jogo da velha  
-        -:   10: * @author Ryan Reis
-        -:   11: * @param  velha - não faz nada;
-        -:   12: */ 
-        -:   13:
-        2:   14:int VerificaVelha( int velha[3][3] )
-        -:   15:{
-        5:   16:	for (int j=0; j<=2; j++) {
-        -:   17:		/* Verifica se a determinada linha j foi toda marcada por X*/
-        4:   18:		if (velha[j][0] == 1 && velha[j][1] == 1 && velha[j][2] == 1) {
-        1:   19:			return 1;
-        -:   20:		}
-        -:   21:	}
-        3:   22:	for (int i=0; i<=2; i++) {
-        -:   23:		/* Verifica a determinada coluna i foi toda marcada por X*/
-        3:   24:		if (velha[0][i] == 1 && velha[1][i] == 1 && velha[2][i] == 1) {
-        1:   25:			return 1;
-        -:   26:		}
-        -:   27:	}
-        -:   28:
-        -:   29:	/*Verifica a diagonal principal*/
-    #####:   30:	if (velha[0][0]==1 && velha[1][1]==1 && velha[2][2]==1) {
-    #####:   31:		return 1;
-        -:   32:	}
-        -:   33:	/*Verifica diagonal secundária*/
-    #####:   34:	if (velha[0][2]==1 && velha[1][1]==1 && velha[2][0]==1) {
-    #####:   35:		return 1;
-        -:   36:	}
-        -:   37:	
-    #####:   38:	return 0;
-        -:   39:}
-        -:   40:
-        -:   41:
+        -:    4:#include "velha.hpp"
+        -:    5:/**
+        -:    6: * @brief verifica situacao do jogo da velha  
+        -:    7: * @author Ryan Reis
+        -:    8: * @param  velha - verifica se X venceu, ou se é impossível pelas regras;
+        -:    9: */ 
+        -:   10:
+        2:   11:bool VerificaRegras(int velha[3][3]) {
+        2:   12:    int primeiro = velha[0][0];
+        2:   13:    if (primeiro != 1 && primeiro != 2) {
+    #####:   14:        return false;
+        -:   15:    }
+        5:   16:    for (int i=0; i <= 2; i++) {
+       15:   17:        for (int j=0; j <= 2; j++) {
+       12:   18:            if (velha[i][j] != primeiro && velha[i][j] != 0) { return false; }
+        -:   19:        }
+        -:   20:    }
+        -:   21:
+        1:   22:    return true;
+        -:   23:}
+        2:   24:int VerificaVelha(int velha[3][3])
+        -:   25:{   /* Verifica as regras */
+        2:   26:    if (VerificaRegras(velha) == true) { return -2; }
+        4:   27:    for (int j=0; j <= 2; j++) {
+        -:   28:        /* Verifica se a determinada linha j foi toda marcada por X*/
+       3*:   29:        if (velha[j][0] == 1 && velha[j][1] == 1 && velha[j][2] == 1) {
+    #####:   30:            return 1;
+        -:   31:        }
+        -:   32:    }
+        3:   33:    for (int i=0; i <= 2; i++) {
+        -:   34:        /* Verifica a determinada coluna i foi toda marcada por X*/
+        3:   35:        if (velha[0][i] == 1 && velha[1][i] == 1 && velha[2][i] == 1) {
+        1:   36:            return 1;
+        -:   37:        }
+        -:   38:    }
+        -:   39:    /*Verifica a diagonal principal*/
+    #####:   40:    if (velha[0][0] == 1 && velha[1][1] == 1 && velha[2][2] == 1) { return 1; }
+        -:   41:    /*Verifica diagonal secundária*/
+    #####:   42:    if (velha[0][2] == 1 && velha[1][1] == 1 && velha[2][0] == 1) { return 1; }
+        -:   43:
+    #####:   44:    return 0;
+        -:   45:}
