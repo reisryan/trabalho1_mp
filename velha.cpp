@@ -21,6 +21,7 @@ bool VerificaRegras(int velha[3][3]) {
 
     return true;
 }
+
 int VerificaVelha(int velha[3][3])
 {   /* Verifica as regras */
     if (VerificaRegras(velha) == true) { return -2; }

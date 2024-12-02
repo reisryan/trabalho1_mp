@@ -9,38 +9,39 @@
         -:    8: * @param  velha - verifica se X venceu, ou se é impossível pelas regras;
         -:    9: */ 
         -:   10:
-        2:   11:bool VerificaRegras(int velha[3][3]) {
-        2:   12:    int primeiro = velha[0][0];
-        2:   13:    if (primeiro != 1 && primeiro != 2) {
+        3:   11:bool VerificaRegras(int velha[3][3]) {
+        3:   12:    int primeiro = velha[0][0];
+        3:   13:    if (primeiro != 1 && primeiro != 2) {
     #####:   14:        return false;
         -:   15:    }
-        5:   16:    for (int i=0; i <= 2; i++) {
-       15:   17:        for (int j=0; j <= 2; j++) {
-       12:   18:            if (velha[i][j] != primeiro && velha[i][j] != 0) { return false; }
+        6:   16:    for (int i=0; i <= 2; i++) {
+       17:   17:        for (int j=0; j <= 2; j++) {
+       14:   18:            if (velha[i][j] != primeiro && velha[i][j] != 0) { return false; }
         -:   19:        }
         -:   20:    }
         -:   21:
         1:   22:    return true;
         -:   23:}
-        2:   24:int VerificaVelha(int velha[3][3])
-        -:   25:{   /* Verifica as regras */
-        2:   26:    if (VerificaRegras(velha) == true) { return -2; }
-        4:   27:    for (int j=0; j <= 2; j++) {
-        -:   28:        /* Verifica se a determinada linha j foi toda marcada por X*/
-       3*:   29:        if (velha[j][0] == 1 && velha[j][1] == 1 && velha[j][2] == 1) {
-    #####:   30:            return 1;
-        -:   31:        }
-        -:   32:    }
-        3:   33:    for (int i=0; i <= 2; i++) {
-        -:   34:        /* Verifica a determinada coluna i foi toda marcada por X*/
-        3:   35:        if (velha[0][i] == 1 && velha[1][i] == 1 && velha[2][i] == 1) {
-        1:   36:            return 1;
-        -:   37:        }
-        -:   38:    }
-        -:   39:    /*Verifica a diagonal principal*/
-    #####:   40:    if (velha[0][0] == 1 && velha[1][1] == 1 && velha[2][2] == 1) { return 1; }
-        -:   41:    /*Verifica diagonal secundária*/
-    #####:   42:    if (velha[0][2] == 1 && velha[1][1] == 1 && velha[2][0] == 1) { return 1; }
-        -:   43:
-    #####:   44:    return 0;
-        -:   45:}
+        -:   24:
+        3:   25:int VerificaVelha(int velha[3][3])
+        -:   26:{   /* Verifica as regras */
+        3:   27:    if (VerificaRegras(velha) == true) { return -2; }
+        8:   28:    for (int j=0; j <= 2; j++) {
+        -:   29:        /* Verifica se a determinada linha j foi toda marcada por X*/
+       6*:   30:        if (velha[j][0] == 1 && velha[j][1] == 1 && velha[j][2] == 1) {
+    #####:   31:            return 1;
+        -:   32:        }
+        -:   33:    }
+        7:   34:    for (int i=0; i <= 2; i++) {
+        -:   35:        /* Verifica a determinada coluna i foi toda marcada por X*/
+        6:   36:        if (velha[0][i] == 1 && velha[1][i] == 1 && velha[2][i] == 1) {
+        1:   37:            return 1;
+        -:   38:        }
+        -:   39:    }
+        -:   40:    /*Verifica a diagonal principal*/
+       1*:   41:    if (velha[0][0] == 1 && velha[1][1] == 1 && velha[2][2] == 1) { return 1; }
+        -:   42:    /*Verifica diagonal secundária*/
+       1*:   43:    if (velha[0][2] == 1 && velha[1][1] == 1 && velha[2][0] == 1) { return 1; }
+        -:   44:
+        1:   45:    return 0;
+        -:   46:}
