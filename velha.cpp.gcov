@@ -1,0 +1,20 @@
+        -:    0:Source:velha.cpp
+        -:    1:/**
+        -:    2: * \file  velha.cpp
+        -:    3: */
+        -:    4:
+        -:    5: 
+        -:    6:#include "velha.hpp"
+        -:    7:
+        -:    8:/** 
+        -:    9: * @brief verifica situacao do jogo da velha  
+        -:   10: * @author Ryan Reis
+        -:   11: * @param  velha - não faz nada;
+        -:   12: */ 
+        -:   13:
+        1:   14:int VerificaVelha( int velha[3][3] )
+        -:   15:{
+        1:   16:	return 0; /*!< retorna zero para teste */ 
+        -:   17:}
+        -:   18:
+        -:   19:
