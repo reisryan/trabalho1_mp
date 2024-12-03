@@ -24,7 +24,32 @@ bool VerificaRegras(int velha[3][3]) {
     return true;
 }
 
-int VerificaVelha(int velha[3][3]) {   /* Verifica as regras */
+bool VerificaEmpate(int velha[3][3]) {
+    int quantX = 0;
+    int quantO = 0;
+
+    for (int i=0; i <= 2; i++) {
+        for (int j=0; j <= 2; j++) {
+            if (velha[i][j] == 1) {
+                quantX += 1;
+            }
+            if (velha[i][j] == 2) {
+                quantO += 1;
+            }
+        }
+    }
+    if ((quantX == quantO) && (quantX > 0) && (quantX <= 2)) {
+        return true;
+    }
+    return false;
+}
+
+int VerificaVelha(int velha[3][3]) {
+    /* Verifica a existência de empates */
+    if (VerificaEmpate(velha) == true) {
+        return 0;
+    }
+    /* Verifica as regras */
     if (VerificaRegras(velha) == true) {
         return -2;
     }
@@ -52,5 +77,5 @@ int VerificaVelha(int velha[3][3]) {   /* Verifica as regras */
     (velha[1][1] == 1 || velha[1][1] == 2)) {
         return velha[1][1];
     }
-    //return 0; - lógica ainda não implementada;
+    return -3;
 }
