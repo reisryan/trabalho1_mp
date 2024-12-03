@@ -12,7 +12,7 @@ TEST_CASE("Testa Empate", "[single-file]") {
     int teste1[3][3]= {{2, 0, 1}, {2, 0, 1}, {0, 0, 0}};
     REQUIRE(VerificaVelha(teste1)== 0);
 }
-TEST_CASE("Testa -1", "[single-file]") {
+TEST_CASE("Testa -2", "[single-file]") {
     int teste2[3][3]={{1, 1, 1}, {1, 1, 1}, {1, 1, 1}};
     REQUIRE(VerificaVelha(teste2)== -2);
 }
@@ -31,4 +31,16 @@ TEST_CASE("Teste Vencedor X 2", "[single-file]") {
 TEST_CASE("Teste Empate 1", "[single-file]") {
     int teste6[3][3]={{1, 0, 0}, {0, 2, 0}, {0, 0, 0}};
     REQUIRE(VerificaVelha(teste6)== 0);
+}
+TEST_CASE("Teste Indefinido 1", "[single-file]") {
+    int teste7[3][3] = {{1, 0, 0}, {0, 0, 0}, {0, 0, 0}};
+    REQUIRE(VerificaVelha(teste7)== -1);
+}
+TEST_CASE("Teste Indefinido 2", "[single-file]") {
+    int teste8[3][3] = {{1, 1, 2}, {1, 2, 1}, {2, 1, 2}};
+    REQUIRE(VerificaVelha(teste8)== -1);
+}
+TEST_CASE("Teste Indefinido 3", "[single-file]") {
+    int teste9[3][3] = {{1, 1, 0}, {0, 2, 0}, {0, 0, 0}};
+    REQUIRE(VerificaVelha(teste9)== -1);
 }
