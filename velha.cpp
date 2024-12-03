@@ -52,6 +52,5 @@ int VerificaVelha(int velha[3][3]) {   /* Verifica as regras */
     (velha[1][1] == 1 || velha[1][1] == 2)) {
         return velha[1][1];
     }
-
-    return 0;
+    //return 0; - lógica ainda não implementada;
 }
