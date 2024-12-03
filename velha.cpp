@@ -44,38 +44,67 @@ bool VerificaEmpate(int velha[3][3]) {
     return false;
 }
 
+bool VerificaIndefinido(int velha[3][3]) {
+    int quantX = 0;
+    int quantO = 0;
+    // Conta os elementos no tabuleiro
+    for (int i = 0; i <= 2; i++) {
+        for (int j = 0; j <= 2; j++) {
+            if (velha[i][j] == 1) {
+                quantX += 1;
+            } else if (velha[i][j] == 2) {
+                quantO += 1;
+            }
+        }
+    }
+    if ((quantX > 3 || quantO > 3) && (VerificaRegras(velha) == false)) {
+        return true;
+    }
+    if (((quantX == 0 || quantO == 0) || (quantX < 3 && quantO < 3 && quantX != quantO)) && (quantO != 9 && quantX != 9)) {
+        return true;
+    }
+
+    return false;
+}
+
 int VerificaVelha(int velha[3][3]) {
+    /* Verifica se o estado do tabuleiro é indefinido */
+    if (VerificaIndefinido(velha)) {
+        return -1;
+    }
     /* Verifica a existência de empates */
-    if (VerificaEmpate(velha) == true) {
+    if (VerificaEmpate(velha)) {
         return 0;
     }
     /* Verifica as regras */
-    if (VerificaRegras(velha) == true) {
+    if (VerificaRegras(velha)) {
         return -2;
     }
-    for (int j=0; j <= 2; j++) {
-        /* Verifica se a determinada linha j foi toda marcada por X/O*/
+    /* Verifica se há vitória em linhas j */
+    for (int j = 0; j <= 2; j++) {
         if ((velha[j][0] == velha[j][1] && velha[j][1] == velha[j][2]) &&
         (velha[j][0] == 1 || velha[j][0] == 2)) {
             return velha[j][0];
         }
     }
-    for (int i=0; i <= 2; i++) {
-        /* Verifica a determinada coluna i foi toda marcada por X/O*/
+    /* Verifica se há vitória em colunas i */
+    for (int i = 0; i <= 2; i++) {
         if ((velha[0][i] == velha[1][i] && velha[1][i] == velha[2][i]) &&
         (velha[0][i] == 1 || velha[0][i] == 2)) {
             return velha[0][i];
         }
     }
-    /*Verifica a diagonal principal*/
+    /* Verifica vitória na diagonal principal */
     if ((velha[0][0] == velha[1][1] && velha[1][1] == velha[2][2]) &&
     (velha[0][0] == 1 || velha[0][0] == 2)) {
         return velha[0][0];
     }
-    /*Verifica diagonal secundária*/
+    /* Verifica vitória na diagonal secundária */
     if ((velha[0][2] == velha[1][1] && velha[1][1] == velha[2][0]) &&
     (velha[1][1] == 1 || velha[1][1] == 2)) {
         return velha[1][1];
     }
+
+    /* Caso nenhuma das condições anteriores seja satisfeita */
     return -3;
 }
